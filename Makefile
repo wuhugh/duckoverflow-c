@@ -9,14 +9,14 @@ OBJS= duckoverflow.o duckutils.o
 duckoverflow: duckutils cjson duckoverflow.c
 	$(CC) $(FLAGS) duckoverflow.c duckutils.o cJSON.o $(LIBS) -o do.out
 
-duckutils: duckutils.h duckutils.c
-	$(CC) $(FLAGS) -c duckutils.c
+duckutils: cjson duckutils.h duckutils.c
+	$(CC) $(FLAGS) -c duckutils.c cJSON.c
 
 cjson: cJSON.c cJSON.h
 	$(CC) $(FLAGS) -c cJSON.c
 
 debug:
-	$(CC) $(FLAGS) -g duckoverflow.c duckutils.o cJSON.o $(LIBS) -o do.out
+	$(CC) $(FLAGS) -g duckoverflow.c duckutils.o cJSON.o $(LIBS) -o debug.out
 
 clean:
 	rm *.out *.o *.gch
